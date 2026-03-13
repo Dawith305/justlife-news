@@ -2,25 +2,27 @@ import type { Ref } from 'vue';
 
 export function useNewsPagination() {
   const currentPageToken = ref<string | null>(null);
-  const previousToken = ref<string | null>(null);
+  const previousTokens = ref<Array<string | null>>([]);
 
-  const canGoPrev = computed(() => previousToken.value !== null);
+  const canGoPrev = computed(() => previousTokens.value.length > 0);
 
   function goNext(nextPage: string | null) {
     if (!nextPage) return;
-    previousToken.value = currentPageToken.value;
+    previousTokens.value = [...previousTokens.value, currentPageToken.value];
     currentPageToken.value = nextPage;
   }
 
   function goPrev() {
-    if (previousToken.value === null) return;
-    currentPageToken.value = previousToken.value;
-    previousToken.value = null;
+    const tokens = previousTokens.value;
+    if (tokens.length === 0) return;
+    const token = tokens[tokens.length - 1];
+    previousTokens.value = tokens.slice(0, -1);
+    currentPageToken.value = token;
   }
 
   function reset() {
     currentPageToken.value = null;
-    previousToken.value = null;
+    previousTokens.value = [];
   }
 
   return {

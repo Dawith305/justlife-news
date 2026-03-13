@@ -40,11 +40,14 @@ const article = computed(() => data.value ?? null);
 
 <style lang="scss" scoped>
 .news-detail {
+  max-width: 48rem;
+  margin: 0 auto;
+
   &__back {
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
     color: var(--color-primary);
     text-decoration: none;
     font-weight: 500;
@@ -64,6 +67,7 @@ const article = computed(() => data.value ?? null);
     margin-bottom: var(--space-md);
     color: var(--color-text);
     line-height: 1.3;
+    text-decoration: underline;
   }
 
   &__image {

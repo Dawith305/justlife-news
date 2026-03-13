@@ -14,7 +14,10 @@ export default defineNuxtConfig({
     newsApiKey: ''
   },
 
-  css: [join(__dirname, 'assets/styles/tokens.scss')],
+  css: [
+    join(__dirname, 'assets/styles/tokens.scss'),
+    join(__dirname, 'assets/styles/app.scss')
+  ],
 
   vite: {
     css: {

@@ -2,7 +2,7 @@
   <div class="news-list">
     <div class="news-list__header">
       <h1 class="news-list__title">Justlife News</h1>
-      <p v-if="data?.totalResults != null" class="news-list__count">
+      <p v-if="data?.totalResults != null && !pending" class="news-list__count">
         {{ data.totalResults.toLocaleString() }} results
       </p>
     </div>
@@ -51,6 +51,9 @@ const { data, pending, error } = useAsyncData(
 
 <style lang="scss" scoped>
 .news-list {
+  max-width: 48rem;
+  margin: 0 auto;
+
   &__header {
     margin-bottom: var(--space-lg);
   }

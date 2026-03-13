@@ -4,6 +4,7 @@
       :to="`/news/${props.article.article_id}`"
       class="list-item__link"
     >
+      <Newspaper :size="18" class="list-item__icon" />
       <span class="list-item__title">{{ props.article.title }}</span>
       <ChevronRight :size="18" class="list-item__icon" />
     </NuxtLink>
@@ -11,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ChevronRight } from 'lucide-vue-next';
+import { ChevronRight, Newspaper } from 'lucide-vue-next';
 import type { NewsArticle } from '~/types/news';
 
 const props = defineProps<{

@@ -13,7 +13,7 @@
 
 <style lang="scss" scoped>
 .layout {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--color-bg);
@@ -22,6 +22,7 @@
 }
 
 .header {
+  position: sticky;
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--color-border);
   background: var(--color-bg);
@@ -44,9 +45,14 @@
 
 .main {
   flex: 1;
-  padding: var(--space-lg);
-  max-width: 48rem;
+  padding: var(--space-md);
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  @media (min-width: 768px) {
+    padding: var(--space-lg);
+  }
 }
 </style>
