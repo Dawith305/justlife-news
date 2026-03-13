@@ -1,0 +1,52 @@
+$color-bg: #ffffff;
+$color-bg-subtle: #f5f7fa;
+$color-primary: #0ea5e9;
+$color-primary-hover: #0284c7;
+$color-text: #1e293b;
+$color-text-muted: #64748b;
+$color-border: #e2e8f0;
+$color-danger: #b91c1c;
+
+$font-sans: system-ui, -apple-system, sans-serif;
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2rem;
+$radius: 0.5rem;
+
+:root {
+  --color-bg: #{$color-bg};
+  --color-bg-subtle: #{$color-bg-subtle};
+  --color-primary: #{$color-primary};
+  --color-primary-hover: #{$color-primary-hover};
+  --color-text: #{$color-text};
+  --color-text-muted: #{$color-text-muted};
+  --color-border: #{$color-border};
+  --color-danger: #{$color-danger};
+  --font-sans: #{$font-sans};
+  --space-xs: #{$space-xs};
+  --space-sm: #{$space-sm};
+  --space-md: #{$space-md};
+  --space-lg: #{$space-lg};
+  --space-xl: #{$space-xl};
+  --radius: #{$radius};
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.skeleton {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius);
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
