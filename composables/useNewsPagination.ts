@@ -4,7 +4,7 @@ export function useNewsPagination() {
   const currentPageToken = ref<string | null>(null);
   const previousToken = ref<string | null>(null);
 
-  const canGoPrev = computed(() => previousToken.value !== null);
+  const canGoPrev = computed(() => currentPageToken.value !== null);
 
   function goNext(nextPage: string | null) {
     if (!nextPage) return;
@@ -13,9 +13,13 @@ export function useNewsPagination() {
   }
 
   function goPrev() {
-    if (previousToken.value === null) return;
-    currentPageToken.value = previousToken.value;
-    previousToken.value = null;
+    if (currentPageToken.value === null) return;
+    if (previousToken.value !== null) {
+      currentPageToken.value = previousToken.value;
+      previousToken.value = null;
+    } else {
+      currentPageToken.value = null;
+    }
   }
 
   function reset() {

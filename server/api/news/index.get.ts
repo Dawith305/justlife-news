@@ -1,8 +1,33 @@
 import type { NewsApiResponse } from '~/types/news';
 import { NEWSDATA_LATEST_URL } from '~/server/utils/newsdata';
+import mockListData from '../../mocks/news-list.json';
+
+const MOCK_PAGE_SIZE = 10;
+const MOCK_PAGE_2_TOKEN = 'mock-page-2';
+
+const listMock = mockListData as NewsApiResponse;
 
 export default defineEventHandler(async (event): Promise<NewsApiResponse> => {
   const config = useRuntimeConfig(event);
+  if (config.useMockNews) {
+    const allResults = listMock.results ?? [];
+    const totalResults = allResults.length;
+    const page = getQuery(event).page as string | undefined;
+
+    if (page === MOCK_PAGE_2_TOKEN) {
+      return {
+        results: allResults.slice(MOCK_PAGE_SIZE, MOCK_PAGE_SIZE * 2),
+        nextPage: null,
+        totalResults
+      };
+    }
+    return {
+      results: allResults.slice(0, MOCK_PAGE_SIZE),
+      nextPage: totalResults > MOCK_PAGE_SIZE ? MOCK_PAGE_2_TOKEN : null,
+      totalResults
+    };
+  }
+
   const apiKey = config.newsApiKey;
   if (!apiKey) {
     throw createError({ statusCode: 500, message: 'News API key not configured' });

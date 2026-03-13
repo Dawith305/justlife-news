@@ -11,7 +11,8 @@ export default defineNuxtConfig({
   modules: ['@nuxt/test-utils/module'],
 
   runtimeConfig: {
-    newsApiKey: ''
+    newsApiKey: '',
+    useMockNews: false
   },
 
   css: [join(__dirname, 'assets/styles/tokens.scss')],
